@@ -2,12 +2,9 @@ import React, { useState, useCallback, useEffect } from "react";
 import { Header } from "./components/Header";
 import { ImageUploader } from "./components/ImageUploader";
 import { ResultDisplay } from "./components/ResultDisplay";
-import { convertOldTamilToModern } from "./services/geminiService";
 import { predictPeriod } from "./services/periodService";
 
 function App() {
-  const apiKey ="AIzaSyBtZHNPIf4-e1LoWpa1QzT5utS_KYe17hU"; 
-  console.log("API", apiKey);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [convertedText, setConvertedText] = useState<string>("");
@@ -41,31 +38,17 @@ function App() {
 
     try {
       // 🔥 Gemini translation
-      const result = await convertOldTamilToModern(imageFile);
+      const formData = new FormData();
+formData.append("image", imageFile);
 
-// 🔥 VALIDATION (MAIN FIX)
-if (
-  !result ||
-  result.toLowerCase().includes("no") ||
-  result.toLowerCase().includes("not") ||
-  result.toLowerCase().includes("identified")
-) {
-  setError("Please upload a valid Tamil inscription image");
-  setPredictedScript("");
-  setPeriod(null);
-  setConvertedText("");
-  setIsLoading(false);
-  return;
-}
-      // 🔥 ML prediction
-      const periodResult = await predictPeriod(imageFile);
+const res = await fetch("https://kalmozhi-decoder.onrender.com/predict", {
+  method: "POST",
+  body: formData
+});
 
-      console.log("API RESULT 👉", periodResult);
+const data = await res.json();
 
-      setPredictedScript(periodResult.predicted_script);
-      setPeriod(periodResult.estimated_period);
-
-      setConvertedText(result);
+setConvertedText(data.result);
 
     } catch (err) {
       if (err instanceof Error) {
@@ -77,7 +60,7 @@ if (
       setIsLoading(false);
     }
 
-  }, [imageFile, apiKey]);
+  }, [imageFile,]);
 
   return (
     <div
