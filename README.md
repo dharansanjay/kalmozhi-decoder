@@ -1,126 +1,150 @@
+🏺 **Kalmozhi Decoder**
 
-# Ancient Tamil Manuscript Converter
+Ancient Tamil Inscription Translator & Analysis System
 
-[![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Gemini-blue.svg)](https://ai.google.dev/)
-
-An AI-powered web application that converts ancient Tamil Brahmi script from images into modern, readable Tamil text. This tool leverages the multimodal capabilities of Google's Gemini model to perform Optical Character Recognition (OCR) and script conversion.
-
-![App Screenshot](https://github.com/Balaji1304/Ancient-Tamil-Manuscript-Translator/blob/main/old-tamil-script-converter.png)
+Kalmozhi Decoder is an web application that translates and analyzes ancient Tamil inscriptions from images into modern Tamil and English text. It combines OCR and generative AI to not only convert scripts but also provide meaningful interpretation.
 
 ---
 
-## ✨ Features
+📌 Overview
 
-- **Secure API Key Handling**: Prompts for an API key if not provided, storing it only for the current session.
-- **Intuitive Image Upload**: Supports both drag-and-drop and traditional file selection.
-- **Instant Image Preview**: See the uploaded image directly in the interface before conversion.
-- **AI-Powered Conversion**: Utilizes the Google Gemini API for accurate OCR and script transformation.
-- **Side-by-Side View**: Compare the original image with the generated modern Tamil text.
-- **Copy to Clipboard**: Easily copy the converted text with a single click.
-- **Responsive Design**: Fully functional on both desktop and mobile devices.
-- **Clear User Feedback**: Displays loading states during processing and handles potential errors gracefully.
+Ancient Tamil inscriptions are difficult to read and interpret due to their historical script variations.
+Kalmozhi Decoder simplifies this process by allowing users to upload inscription images and receive:
+
+* Modern Tamil translation
+* Script interpretation
+* Basic contextual understanding
 
 ---
 
-## 🛠️ Technology Stack
+🚀 Features
 
-- **Framework**: [React](https://reactjs.org/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **AI Model**: [Google Gemini API (`gemini-2.5-flash`)](https://ai.google.dev/) via `@google/genai` SDK
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Bundling/Imports**: ES Modules with Import Maps (no build step required)
+* 📸 Upload ancient inscription images
+* 🔍 OCR-based text extraction
+* ⚡ Fast and user-friendly interface
 
 ---
 
-## 🚀 How It Works
+🧠 Key Capabilities
 
-The application follows a simple yet powerful workflow:
-
-1.  **API Key Setup**: The app first checks for a Gemini API key. If not found, it prompts the user to enter one.
-2.  **Image Upload**: The user selects an image containing Old Tamil script.
-3.  **Client-Side Processing**: The browser converts the image file into a Base64-encoded string.
-4.  **API Request**: The Base64 image data and the user-provided API key are sent to the Google Gemini API.
-5.  **Gemini's Magic**: The `gemini-2.5-flash` model processes the request:
-    - It performs OCR on the image to recognize the Brahmi-derived characters.
-    - Guided by the prompt, it acts as a Tamil linguistics expert to convert the recognized characters into their Modern Tamil Unicode equivalents.
-    - It preserves the original word spacing and layout.
-6.  **Display Result**: The API returns the converted text, which is then displayed in the UI for the user to read and copy.
+* Script decoding (ancient → modern)
+* Text cleaning and reconstruction
+* Context-aware interpretation 
+* Supports image-based input
 
 ---
 
-## ⚙️ Getting Started
+🛠 Tech Stack
 
-To run this project, you'll need a Google Gemini API key.
+Frontend
 
-### Prerequisites
+* React.js
+* TypeScript
+* Vite
 
-- A modern web browser.
-- A **Google Gemini API key**. You can get one from [Google AI Studio](https://aistudio.google.com/app/apikey).
+Backend
 
-### Running the Application
+* Python (Flask)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/your-username/old-tamil-converter.git
-    cd old-tamil-converter
-    ```
+AI & Tools
 
-2.  **Run a local web server:**
-    Since this project uses ES modules, you need to serve the files from a local server.
-    ```bash
-    # If you have Python 3
-    python -m http.server
-    ```
-    Or use a simple Node.js package:
-    ```bash
-    # Install with: npm install -g serve
-    serve .
-    ```
-
-3.  **Open and Configure:**
-    - Navigate to `http://localhost:8000` (or the URL provided by your server) in your browser.
-    - The app will prompt you to enter your Gemini API key. This key is stored in your browser's memory and is gone when you close the tab.
-
-### Local Development (Optional)
-
-For a quicker local development workflow, you can create an `env.js` file to avoid entering the key on every page load.
-
-1.  Create a new file named `env.js` in the project's root directory.
-
-    **⚠️ Important**: This file is listed in `.gitignore` and **must not** be committed to version control.
-
-2.  Add the following content to `env.js`, replacing the placeholder with your actual key:
-    ```javascript
-    // env.js
-    window.process = {
-      env: {
-        API_KEY: 'YOUR_GEMINI_API_KEY_HERE'
-      }
-    };
-    ```
-    The app will automatically detect and use this key when you run it locally.
+* Google Gemini API
+* Tesseract OCR
 
 ---
 
-## 📂 Project Structure
+📂 Project Structure
+
 ```
-/
+kalmozhi-decoder/
+│
+├── backend/
+│   ├── app.py
+│   ├── predict_period.py
+│   ├── train_period_model.py
+│   ├── requirements.txt
+│   └── uploads/
+│
 ├── components/
-│   ├── ApiKeySetup.tsx      # Securely prompts for API key
-│   ├── Header.tsx           # Page header component
-│   ├── Icons.tsx            # SVG icon components
-│   ├── ImageUploader.tsx    # Handles image selection and preview
-│   ├── Loader.tsx           # Loading spinner component
-│   └── ResultDisplay.tsx    # Displays the converted text or status
-│
 ├── services/
-│   └── geminiService.ts     # Logic for interacting with the Gemini API
+├── public/
+├── src/
 │
-├── .gitignore               # Ensures sensitive files are not committed
-├── App.tsx                  # Main application component, manages state
-├── env.js                   # Local environment variables (DO NOT COMMIT)
-├── index.html               # HTML entry point
-├── index.tsx                # React application root
-├── metadata.json            # Application metadata
-└── README.md                # Project documentation
+├── App.tsx
+├── index.html
+├── package.json
+├── README.md
+└── .gitignore
 ```
+
+---
+
+⚙️ Installation & Setup
+
+1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/dharansanjay/kalmozhi-decoder.git
+cd kalmozhi-decoder
+```
+2️⃣ Frontend Setup
+
+```bash
+npm install
+npm run dev
+```
+3️⃣ Backend Setup
+
+```bash
+cd backend
+pip install -r requirements.txt
+python app.py
+```
+4️⃣ Environment Variables
+
+Create `.env` file:
+
+```
+GEMINI_API_KEY=your_api_key_here
+```
+
+---
+
+📸 How It Works
+
+1. User uploads an inscription image
+2. OCR extracts raw text
+3. System processes and converts script
+4. System provides modern Tamil and English output + analysis
+
+---
+
+## 🌍 Future Improvements
+
+* 📱 Mobile optimization
+* 🎯 Higher OCR accuracy for damaged texts
+* 📊 Advanced inscription analysis (period detection)
+* 🌐 Multi-language translation
+
+---
+
+## 🧑‍💻 Author
+
+DHARAN SANJAY M
+B.Sc Data Science
+
+GitHub: https://github.com/dharansanjay
+
+---
+
+⭐ Acknowledgements
+
+* Google Gemini API
+* Tesseract OCR
+* Open-source community
+
+---
+
+📜 License
+
+This project is licensed under the MIT License.
