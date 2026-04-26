@@ -1,0 +1,7 @@
+{
+  "name": "Old Tamil Script Converter",
+  "description": "An AI-powered tool to convert ancient Tamil Brahmi script from images into modern Tamil text using OCR and Gemini.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

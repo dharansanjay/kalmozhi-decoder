@@ -1,0 +1,10 @@
+node_modules
+.env
+backend/venv/
+__pycache__/
+*.pyc
+backend/uploads/
+*.h5
+*.jpg
+*.png
+*.exe
