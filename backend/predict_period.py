@@ -1,8 +1,10 @@
 import numpy as np
 from tensorflow.keras.preprocessing import image
-
-# ✅ Load model
-model = load_model("period_model.h5")
+def predict_period(data):
+    return {
+        "prediction": "Model temporarily disabled",
+        "status": "working"
+        }
 
 # ✅ Class names (same order as training)
 class_names = ['Chola_Later_Tamil', 'Tamil_Brahmi', 'Vattezhuthu']
