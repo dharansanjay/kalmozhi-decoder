@@ -1,9 +1,10 @@
+import os
+import google.generativeai as genai
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from predict_period import predict_period
-import os 
-import google.generativeai as genai
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # ✅ FIRST create app
 app = Flask(__name__)
