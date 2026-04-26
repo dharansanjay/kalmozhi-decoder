@@ -1,5 +1,3 @@
-import numpy as np
-from tensorflow.keras.preprocessing import image
 def predict_period(data):
     return {
         "prediction": "Model temporarily disabled",
