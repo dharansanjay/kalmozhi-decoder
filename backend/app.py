@@ -1,5 +1,6 @@
 import os
 import google.generativeai as genai
+print("KEY:", os.getenv("EMINI_API_KEY"))
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 from flask import Flask, request, jsonify
